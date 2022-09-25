@@ -1,0 +1,37 @@
+{% extends 'otchet/base.html' %}
+
+
+
+{% block title %}
+    Редактирование жильца
+{% endblock %}
+
+{% load static %}
+
+
+
+{% block content %}
+
+
+            <div class="add_pep_form add_pep_form_update" id="add_pep_form">
+                <div class="head_form">
+                    <a href="{% url 'peoples' %}" class="close" id="close_add_form" onclick="close_add_peopl()">
+                        <img src="{% static 'otchet/images/close.png' %}" alt="">
+                    </a>
+                    <h1>Заполните поля ниже</h1>
+                </div>
+
+                <form method="post" class="form_one">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <input type="text" value="AddPepForm" name="name_form" hidden="hidden">
+                    <button type="submit">Редактировать жильца</button>
+                </form>
+
+            </div>
+
+
+
+
+
+{% endblock %}

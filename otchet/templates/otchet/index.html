@@ -1,0 +1,291 @@
+{% extends 'otchet/base.html' %}
+
+
+
+{% block title %}
+    Хостел
+{% endblock %}
+
+{% load static %}
+{% block header %}
+
+
+{% endblock %}
+
+
+{% block content %}
+
+<!--{% if request.user.is_authenticated %}-->
+<!--<form action="/" method="post">-->
+<!--    {% csrf_token %}-->
+<!--    {{ form.as_p }}-->
+<!--    <button type="submit">Отправить</button>-->
+<!--</form>-->
+<!--{% endif %}-->
+
+
+    {% if request.user.is_authenticated and user.is_staff %}
+
+    <div class="wrapper-content">
+
+        <h1>Последние платежи</h1>
+
+            <div class="payments">
+                <ul class="stolb_payments">
+                    <li>
+                        <h5>Дата</h5>
+                    </li>
+                    <li>
+                        <h5>Имя</h5>
+                    </li>
+                    <li>
+                        <h5>Способ оплаты</h5>
+                    </li>
+                    <li>
+                        <h5>Сумма</h5>
+                    </li>
+                </ul>
+                {% for pay in payments %}
+                    <div class="pay">
+                        <div class="date_1 text_1">
+                            {{ pay.date }}
+                        </div>
+
+                        <div class="user_1 text_1">
+                            {{ pay.name }}
+                        </div>
+
+                        <div class="pay_method text_1">
+                            {% if pay.method == 'card' %}
+                                перевод на карту
+                            {% elif pay.method == 'cash' %}
+                                наличные
+                            {% endif %}
+                        </div>
+
+                        <div class="summa text_1">
+                            {{ pay.summa }}р
+                        </div>
+
+                    </div>
+                {% endfor %}
+            </div>
+
+        <div class="append">
+            <div class="append_but" id="append_but_peopl" onclick="add_peop()">Добавить жильца</div>
+
+            <div class="add_pep_form" id="add_pep_form">
+                <div class="head_form">
+                    <div class="close" id="close_add_form" onclick="close_add_peopl()">
+                        <img src="{% static 'otchet/images/close.png' %}" alt="">
+                    </div>
+                    <h1>Заполните поля ниже</h1>
+                </div>
+
+                <form method="post" class="form_one">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <input type="text" value="AddPepForm" name="name_form" hidden="hidden">
+                    <button type="submit">Добавить жильца</button>
+                </form>
+
+            </div>
+
+            <div class="append_but" id="depart_but_peopl" onclick="depart_peop()">Выселить жильца</div>
+
+            <div class="add_pep_form" id="depart_form">
+                <div class="head_form">
+                    <div class="close" id="close_depart_form" onclick="close_depart_peopl()">
+                        <img src="{% static 'otchet/images/close.png' %}" alt="">
+                    </div>
+                    <h1>Заполните поля ниже</h1>
+                </div>
+
+                <form method="post" class="form_one">
+                    {% csrf_token %}
+                    {{ form7.as_p }}
+                    <input type="text" value="DepartmentForm" name="name_form" hidden="hidden">
+                    <button type="submit">
+                        Выселить жильца
+                    </button>
+                </form>
+
+            </div>
+
+
+            <div class="but">
+                <input type="checkbox"  id="pay_ref" hidden="hidden">
+                <label for="pay_ref" class="append_but append_but2"  onclick="add_ref_pay()">
+                    Оплата / Возврат
+                </label>
+
+                <ul class="ul_pay_ref" id="ul_pay_ref">
+                    <li id="append_but_pay" onclick="add_pay()">Добавить оплату</li>
+                    <li id="append_but_ref" onclick="add_ref()">Добавить возврат</li>
+                </ul>
+            </div>
+
+
+            <div class="add_pep_form" id="add_pay_form">
+                <div class="head_form">
+                    <div class="close" id="close_pay_form" onclick="close_add_pay()">
+                        <img src="{% static 'otchet/images/close.png' %}" alt="">
+                    </div>
+                    <h1>Заполните поля ниже</h1>
+                </div>
+
+                <form method="post" class="form_one">
+                    {% csrf_token %}
+                    {{ form1.as_p }}
+                    <input type="text" value="AddPaymentsForm" name="name_form" hidden="hidden">
+                    <button type="submit">Добавить оплату</button>
+                </form>
+
+            </div>
+
+
+            <div class="add_pep_form" id="add_ref_form">
+                <div class="head_form">
+                    <div class="close" id="close_ref_form" onclick="close_add_ref()">
+                        <img src="{% static 'otchet/images/close.png' %}" alt="">
+                    </div>
+                    <h1>Заполните поля ниже</h1>
+                </div>
+
+                <form method="post" class="form_one">
+                    {% csrf_token %}
+                    {{ form6.as_p }}
+                    <input type="text" value="AddRefundsForms" name="name_form" hidden="hidden">
+                    <button type="submit">Добавить возврат</button>
+                </form>
+
+            </div>
+
+
+            <div class="append_but" id="append_spend_admin" onclick="add_spend_admin()">+ Трата админа</div>
+
+            <div class="add_pep_form" id="add_spend_admin_form">
+                <div class="head_form">
+                    <div class="close" id="close_spend_admin_form" onclick="close_add_spend_admin()">
+                        <img src="{% static 'otchet/images/close.png' %}" alt="">
+                    </div>
+                    <h1>Заполните поля ниже</h1>
+                </div>
+
+                <form method="post" class="form_one">
+                    {% csrf_token %}
+                    {{ form2.as_p }}
+                    <input type="text" value="AddSpendingAdminForm" name="name_form" hidden="hidden">
+                    <button type="submit">+ Трата админа</button>
+                </form>
+
+            </div>
+
+
+            <div class="append_but" id="append_spend_hostel" onclick="add_spend_hostel()">+ Трата дома</div>
+
+            <div class="add_pep_form" id="add_spend_hostel_form">
+                <div class="head_form">
+                    <div class="close" id="close_spend_hostel_form" onclick="close_add_spend_hostel()">
+                        <img src="{% static 'otchet/images/close.png' %}" alt="">
+                    </div>
+                    <h1>Заполните поля ниже</h1>
+                </div>
+
+                <form method="post" class="form_one">
+                    {% csrf_token %}
+                    {{ form3.as_p }}
+                    <input type="text" value="AddSpendingHostelForms" name="name_form" hidden="hidden">
+                    <button type="submit">+ Трата дома</button>
+                </form>
+
+            </div>
+
+            <div class="append_but" id="append_spend_boss" onclick="add_spend_boss()">+ Трата хозяина</div>
+
+            <div class="add_pep_form" id="add_spend_boss_form">
+                <div class="head_form">
+                    <div class="close" id="close_spend_boss_form" onclick="close_add_spend_boss()">
+                        <img src="{% static 'otchet/images/close.png' %}" alt="">
+                    </div>
+                    <h1>Заполните поля ниже</h1>
+                </div>
+
+                <form method="post" class="form_one">
+                    {% csrf_token %}
+                    {{ form4.as_p }}
+                    <input type="text" value="AddSpendingBossForms" name="name_form" hidden="hidden">
+                    <button type="submit">+ Трата хозяина</button>
+                </form>
+
+            </div>
+
+             <div class="append_but" id="append_event" onclick="add_event()">+ Мероприятие</div>
+
+            <div class="add_pep_form" id="add_event_form">
+                <div class="head_form">
+                    <div class="close" id="close_event_form" onclick="close_add_event()">
+                        <img src="{% static 'otchet/images/close.png' %}" alt="">
+                    </div>
+                    <h1>Заполните поля ниже</h1>
+                </div>
+
+                <form method="post" class="form_one">
+                    {% csrf_token %}
+                    {{ form5.as_p }}
+                    <input type="text" value="AddEventsForms" name="name_form" hidden="hidden">
+                    <button type="submit">+ Мероприятие</button>
+                </form>
+
+            </div>
+
+        </div>
+
+        {% elif request.user.is_authenticated %}
+        <div class="info-user">
+            <div class="avatar">
+                <div class="images">
+
+                </div>
+            </div>
+
+            <div class="infa">
+                <ul>
+                    <li>
+                        <h1>{{ name }} {{ surname }}</h1>
+                    </li>
+
+                    <li>
+                        <h3>Баланс:</h3>
+                    </li>
+
+                    <li>
+                        <h3>Остаток дней:</h3>
+                    </li>
+
+                    <li>
+                        <h3>Номер комнаты:</h3>
+                    </li>
+                </ul>
+
+                <div class="dann-but">
+                    <a href="">Комнаты</a>
+                </div>
+
+            </div>
+        </div>
+
+
+        {% endif %}
+
+    </div>
+
+
+
+
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,125 @@
+{% extends 'otchet/base.html' %}
+
+
+
+{% block title %}
+    Жильцы
+{% endblock %}
+
+{% load static %}
+
+
+
+{% block content %}
+    <div class="payments2">
+        <h1>Жители дома</h1>
+
+        <div class="pagin">
+            <div class="but5">
+                <div class="append_but" id="append_but_peopl" onclick="add_peop()">Добавить жильца</div>
+                <div class="append_but" id="depart_but_peopl" onclick="depart_peop()">Выселить жильца</div>
+            </div>
+
+
+            <div class="add_pep_form" id="add_pep_form">
+                <div class="head_form">
+                    <div class="close" id="close_add_form" onclick="close_add_peopl()">
+                        <img src="{% static 'otchet/images/close.png' %}" alt="">
+                    </div>
+                    <h1>Заполните поля ниже</h1>
+                </div>
+
+                <form method="post" class="form_one">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <input type="text" value="AddPepForm" name="name_form" hidden="hidden">
+                    <button type="submit">Добавить жильца</button>
+                </form>
+
+            </div>
+
+
+
+            <div class="add_pep_form" id="depart_form">
+                <div class="head_form">
+                    <div class="close" id="close_depart_form" onclick="close_depart_peopl()">
+                        <img src="{% static 'otchet/images/close.png' %}" alt="">
+                    </div>
+                    <h1>Заполните поля ниже</h1>
+                </div>
+
+                <form method="post" class="form_one">
+                    {% csrf_token %}
+                    {{ form7.as_p }}
+                    <input type="text" value="DepartmentForm" name="name_form" hidden="hidden">
+                    <button type="submit">Выселить жильца</button>
+                </form>
+
+            </div>
+
+            <nav class="num_page">
+                <ul>
+                    {% for p in page_obj.paginator.page_range%}
+                        <li>
+                            <a href="?page={{ p }}">{{ p }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </nav>
+
+        </div>
+
+        <div class="payments">
+
+                <ul class="stolb_payments">
+                    <li>
+                        <h5>Имя</h5>
+                    </li>
+                    <li>
+                        <h5>Номер комнаты</h5>
+                    </li>
+                    <li>
+                        <h5>Номер телефона</h5>
+                    </li>
+
+                </ul>
+                {% for people in page_obj %}
+                    <div class="pay">
+                        <div class="date_1 text_1">
+                            {{ people.name }}
+                        </div>
+
+                        <div class="user_1 text_1">
+                            {{ people.room }}
+                        </div>
+
+                        <div class="summa text_1">
+                            {{ people.phone_number }}
+                            <a href="{% url 'update_peoples' people.id %}" >
+                                <img src="{% static 'otchet/images/pen.png' %}" alt="">
+                            </a>
+
+                            <a href="{% url 'delete_peoples' people.id %}" class="delete_knop">
+                                <img src="{% static 'otchet/images/close.png' %}" alt="">
+                            </a>
+                        </div>
+
+                    </div>
+                {% endfor %}
+            </div>
+        <div class="pagin">
+            <nav class="num_page">
+                <ul>
+                    {% for p in page_obj.paginator.page_range%}
+                        <li>
+                            <a href="?page={{ p }}">{{ p }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </nav>
+
+        </div>
+
+
+    </div>
+{% endblock %}

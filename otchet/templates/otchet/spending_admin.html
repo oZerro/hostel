@@ -1,0 +1,108 @@
+{% extends 'otchet/base.html' %}
+
+
+
+{% block title %}
+    Траты админа
+{% endblock %}
+
+{% load static %}
+
+
+
+{% block content %}
+    <div class="payments2">
+        <h1>Траты админа</h1>
+
+        <div class="pagin">
+            <div class="but5">
+                <div class="append_but" class="append_spend_admin" onclick="add_spend_admin()">+ Трата админа</div>
+            </div>
+
+            <nav class="num_page">
+                <ul>
+                    {% for p in page_obj.paginator.page_range%}
+                        <li>
+                            <a href="?page={{ p }}">{{ p }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </nav>
+
+        </div>
+
+        <div class="payments">
+
+                <ul class="stolb_payments">
+                    <li>
+                        <h5>Дата</h5>
+                    </li>
+                    <li>
+                        <h5>На что</h5>
+                    </li>
+                    <li>
+                        <h5>Сумма</h5>
+                    </li>
+
+                </ul>
+                {% for spend in page_obj %}
+                    <div class="pay">
+                        <div class="date_1 text_1">
+                            {{ spend.date }}
+                        </div>
+
+                        <div class="user_1 text_1">
+                            {{ spend.note }}
+                        </div>
+
+                        <div class="summa text_1">
+                            {{ spend.summa }}р
+                            <a href="{% url 'update_spendingadmin' spend.id %}" >
+                                <img src="{% static 'otchet/images/pen.png' %}" alt="">
+                            </a>
+
+                            <a href="{% url 'delete_spendingadmin' spend.id %}" class="delete_knop">
+                                <img src="{% static 'otchet/images/close.png' %}" alt="">
+                            </a>
+                        </div>
+
+                    </div>
+                {% endfor %}
+            </div>
+        <div class="pagin">
+            <div class="but5">
+                <div class="append_but" class="append_spend_admin" onclick="add_spend_admin()">+ Трата админа</div>
+            </div>
+
+            <nav class="num_page">
+                <ul>
+                    {% for p in page_obj.paginator.page_range%}
+                        <li>
+                            <a href="?page={{ p }}">{{ p }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </nav>
+
+        </div>
+
+
+        <div class="add_pep_form" id="add_spend_admin_form">
+                <div class="head_form">
+                    <div class="close" id="close_spend_admin_form" onclick="close_add_spend_admin()">
+                        <img src="{% static 'otchet/images/close.png' %}" alt="">
+                    </div>
+                    <h1>Заполните поля ниже</h1>
+                </div>
+
+                <form method="post" class="form_one">
+                    {% csrf_token %}
+                    {{ form2.as_p }}
+                    <input type="text" value="AddSpendingAdminForm" name="name_form" hidden="hidden">
+                    <button type="submit">+ Трата админа</button>
+                </form>
+
+            </div>
+
+    </div>
+{% endblock %}

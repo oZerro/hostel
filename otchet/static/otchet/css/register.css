@@ -1,0 +1,47 @@
+
+
+.message{
+    padding: 10px;
+    border-radius: 3px;
+}
+
+.error{
+    background: #c96565;
+    color: #fff;
+    border: 1px solid #e70000;
+}
+
+.success{
+    background: #51c56a;
+    color: #fff;
+    border: 1px solid #02a726;
+}
+
+.form-register{
+    width:400px;
+    margin:auto;
+        margin-top: 100px;
+}
+
+.form-control{
+    width: 100%;
+    height: 25px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+}
+
+
+form ul{
+    list-style: none;
+    padding: 0;
+    color: #f10000;
+}
+
+form ul li{
+    background: #c96565;
+    color: #fff;
+    border: 1px solid #e70000;
+    padding:10px;
+}
+
+

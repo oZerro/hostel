@@ -1,0 +1,37 @@
+{% extends 'otchet/base.html' %}
+
+
+
+{% block title %}
+    Редактирование платежа
+{% endblock %}
+
+{% load static %}
+
+
+
+{% block content %}
+
+
+            <div class="add_pep_form add_pep_form_update" id="add_pay_form">
+                <div class="head_form">
+                    <a href="{% url 'payments'%}" class="close" id="close_pay_form" onclick="close_add_pay()">
+                        <img src="{% static 'otchet/images/close.png' %}" alt="">
+                    </a>
+                    <h1>Заполните поля ниже</h1>
+                </div>
+
+                <form method="post" class="form_one">
+                    {% csrf_token %}
+                    {{ form1.as_p }}
+                    <input type="text" value="AddPaymentsForm" name="name_form" hidden="hidden">
+                    <button type="submit">Редактировать оплату</button>
+                </form>
+
+            </div>
+
+
+
+
+
+{% endblock %}

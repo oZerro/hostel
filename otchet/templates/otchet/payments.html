@@ -1,0 +1,157 @@
+{% extends 'otchet/base.html' %}
+
+
+
+{% block title %}
+    Оплаты
+{% endblock %}
+
+{% load static %}
+
+
+
+
+{% block content %}
+    <div class="payments2">
+        <h1>Оплаты / Возвраты</h1>
+
+        <div class="pagin">
+            <div class="but5">
+                <ul class="ul_pay_ref2" id="ul_pay_ref">
+                    <li id="append_but_pay" onclick="add_pay()">Добавить оплату</li>
+                    <li id="append_but_ref" onclick="add_ref()">Добавить возврат</li>
+                </ul>
+            </div>
+
+            <nav class="num_page">
+                <ul>
+                    {% for p in page_obj.paginator.page_range%}
+                        <li>
+                            <a href="?page={{ p }}">{{ p }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </nav>
+
+
+
+        </div>
+
+        <div class="payments">
+
+                <ul class="stolb_payments">
+                    <li>
+                        <h5>Дата</h5>
+                    </li>
+                    <li>
+                        <h5>Имя</h5>
+                    </li>
+                    <li>
+                        <h5>Способ оплаты</h5>
+                    </li>
+                    <li>
+                        <h5>Сумма</h5>
+                    </li>
+                </ul>
+                {% for pay in page_obj %}
+                    <div class="pay">
+                        <div class="date_1 text_1">
+                             {{ pay.date.day }}.{{ pay.date_check }}.{{ pay.date.year }}г.
+                        </div>
+
+                        <div class="user_1 text_1">
+                            {{ pay.name }}
+                        </div>
+
+                        <div class="pay_method text_1">
+                            {% if pay.method == 'card' %}
+                                перевод на карту
+                            {% elif pay.method == 'cash' %}
+                                наличные
+                            {% endif %}
+                        </div>
+
+                        <div class="summa text_1">
+                            {{ pay.summa }} р
+
+
+                            <a href="{% url 'update_payments' pay.id %}" >
+                                <img src="{% static 'otchet/images/pen.png' %}" alt="">
+                            </a>
+                            <a href="{% url 'delete_payments' pay.id %}" class="delete_knop">
+                                <img src="{% static 'otchet/images/close.png' %}" alt="">
+                            </a>
+                        </div>
+
+
+
+
+
+                    </div>
+                {% endfor %}
+            </div>
+
+
+        <div class="pagin">
+            <div class="but5">
+                <ul class="ul_pay_ref2" class="ul_pay_ref">
+                    <li class="append_but_pay" onclick="add_pay()">Добавить оплату</li>
+                    <li class="append_but_ref" onclick="add_ref()">Добавить возврат</li>
+                </ul>
+            </div>
+
+            <nav class="num_page">
+                <ul>
+                    {% for p in page_obj.paginator.page_range%}
+                        <li>
+                            <a href="?page={{ p }}">{{ p }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </nav>
+
+
+
+        </div>
+
+
+    </div>
+
+
+ <div class="add_pep_form" id="add_pay_form">
+                <div class="head_form">
+                    <div class="close" id="close_pay_form" onclick="close_add_pay()">
+                        <img src="{% static 'otchet/images/close.png' %}" alt="">
+                    </div>
+                    <h1>Заполните поля ниже</h1>
+                </div>
+
+                <form method="post" class="form_one">
+                    {% csrf_token %}
+                    {{ form1.as_p }}
+                    <input type="text" value="AddPaymentsForm" name="name_form" hidden="hidden">
+                    <button type="submit">Добавить оплату</button>
+                </form>
+
+            </div>
+
+
+            <div class="add_pep_form" id="add_ref_form">
+                <div class="head_form">
+                    <div class="close" id="close_ref_form" onclick="close_add_ref()">
+                        <img src="{% static 'otchet/images/close.png' %}" alt="">
+                    </div>
+                    <h1>Заполните поля ниже</h1>
+                </div>
+
+                <form method="post" class="form_one">
+                    {% csrf_token %}
+                    {{ form6.as_p }}
+                    <input type="text" value="AddRefundsForms" name="name_form" hidden="hidden">
+                    <button type="submit">Добавить возврат</button>
+                </form>
+
+            </div>
+
+
+{% endblock %}

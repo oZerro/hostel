@@ -1,0 +1,37 @@
+{% extends 'otchet/base.html' %}
+
+
+
+{% block title %}
+    Редактирование мероприятия
+{% endblock %}
+
+{% load static %}
+
+
+
+{% block content %}
+
+
+            <div class="add_pep_form add_pep_form_update" id="add_event_form">
+                <div class="head_form">
+                    <a href="{% url 'events' %}" class="close" id="close_event_form" onclick="close_add_event()">
+                        <img src="{% static 'otchet/images/close.png' %}" alt="">
+                    </a>
+                    <h1>Заполните поля ниже</h1>
+                </div>
+
+                <form method="post" class="form_one">
+                    {% csrf_token %}
+                    {{ form5.as_p }}
+                    <input type="text" value="AddEventsForms" name="name_form" hidden="hidden">
+                    <button type="submit">Редактировать мероприятие</button>
+                </form>
+
+            </div>
+
+
+
+
+
+{% endblock %}

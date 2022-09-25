@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}  {% endblock %}</title>
+{% load static %}
+    <link rel="stylesheet" href="{% static 'otchet/css/media.css' %}">
+    <link rel="stylesheet" href="{% static 'otchet/css/index.css' %}">
+    <link rel="stylesheet" href="{% static 'otchet/css/register.css' %}">
+
+</head>
+<body>
+
+    <header>
+        <div class="head_head _left">
+            <a href="{% url 'index' %}" class="headr">Главная</a>
+        </div>
+
+        <div class="head_head _right">
+            {% if request.user.is_authenticated %}
+            <div class="info_admin">
+                <div class="avatar">
+                    <img src="{% static 'otchet/images/user.png' %}">
+                </div>
+
+                <div class="text_admin">
+                    <h3>{{ name }}</h3>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="buttons">
+            {% if request.user.is_authenticated %}
+                <a href="{% url 'logout' %}" class="but1">Выход</a>
+
+                <div class="burger_menu" onclick="open_media_menu()">
+                    <img src="{% static 'otchet/images/menu.png' %}">
+                </div>
+
+                <div class="menu-media" id="menu-media">
+                    <img src="{% static 'otchet/images/001.png' %}" onclick="close_media_menu()">
+                    <ul>
+
+                        <li>
+                            <div class="images_ad_media">
+                                <img src="{% static 'otchet/images/mon (7).png' %}">
+                            </div>
+                            <a href="{% url 'index' %}" class="menu_a">Главная</a>
+                        </li>
+
+                        <li>
+                            <div class="images_ad_media">
+                                <img src="{% static 'otchet/images/mon (7).png' %}">
+                            </div>
+                            <a href="{% url 'otchet' %}" class="menu_a">Отчет</a>
+                        </li>
+
+                        <li>
+                            <div class="images_ad_media">
+                                <img src="{% static 'otchet/images/mon (6).png' %}">
+                            </div>
+                            <a href="{% url 'payments' %}" class="menu_a">Платежи</a>
+                        </li>
+
+                        <li>
+                            <div class="images_ad_media">
+                                <img src="{% static 'otchet/images/mon (4).png' %}">
+                            </div>
+                            <a href="{% url 'peoples' %}" class="menu_a">Жильцы</a>
+                        </li>
+
+                        <li>
+                            <div class="images_ad_media">
+                                <img src="{% static 'otchet/images/mon (5).png' %}">
+                            </div>
+                            <a href="{% url 'spendinghostel' %}" class="menu_a">Траты дома</a>
+                        </li>
+
+                        <li>
+                            <div class="images_ad_media">
+                                <img src="{% static 'otchet/images/mon (1).png' %}">
+                            </div>
+                            <a href="{% url 'spendingadmin' %}" class="menu_a">Траты админа</a>
+                        </li>
+
+                        <li>
+                            <div class="images_ad_media">
+                                <img src="{% static 'otchet/images/mon (2).png' %}">
+                            </div>
+                            <a href="{% url 'spendingboss' %}" class="menu_a">Траты хозяина</a>
+                        </li>
+
+                        <li>
+                            <div class="images_ad_media">
+                                <img src="{% static 'otchet/images/mon (3).png' %}">
+                            </div>
+                            <a href="{% url 'events' %}" class="menu_a">Мероприятия</a>
+                        </li>
+                    </ul>
+            </div>
+
+            {% else %}
+                <a href="{% url 'register' %}" class="but1">Регистрация</a>
+                <a href="{% url 'login' %}" class="but1 but2">Авторизация</a>
+            {% endif %}
+
+        </div>
+    </header>
+
+{% if messages %}
+
+    {%for message in messages%}
+        {% if message.tags == 'error' %}
+            <div class="message error">
+                {{ message }}
+            </div>
+        {% else %}
+            <div class="message success">
+                {{ message }}
+            </div>
+        {% endif %}
+    {% endfor %}
+
+{% endif %}
+
+<div class="content">
+    {% if request.user.is_authenticated and user.is_staff %}
+
+    <div class="menu">
+        <ul>
+            <li>
+                <div class="images_ad">
+                    <img src="{% static 'otchet/images/mon (7).png' %}">
+                </div>
+                <a href="{% url 'otchet' %}" class="menu_a">Отчет</a>
+            </li>
+
+            <li>
+                <div class="images_ad">
+                    <img src="{% static 'otchet/images/mon (6).png' %}">
+                </div>
+                <a href="{% url 'payments' %}" class="menu_a">Платежи</a>
+            </li>
+
+            <li>
+                <div class="images_ad">
+                    <img src="{% static 'otchet/images/mon (4).png' %}">
+                </div>
+                <a href="{% url 'peoples' %}" class="menu_a">Жильцы</a>
+            </li>
+
+            <li>
+                <div class="images_ad">
+                    <img src="{% static 'otchet/images/mon (5).png' %}">
+                </div>
+                <a href="{% url 'spendinghostel' %}" class="menu_a">Траты дома</a>
+            </li>
+
+            <li>
+                <div class="images_ad">
+                    <img src="{% static 'otchet/images/mon (1).png' %}">
+                </div>
+                <a href="{% url 'spendingadmin' %}" class="menu_a">Траты админа</a>
+            </li>
+
+            <li>
+                <div class="images_ad">
+                    <img src="{% static 'otchet/images/mon (2).png' %}">
+                </div>
+                <a href="{% url 'spendingboss' %}" class="menu_a">Траты хозяина</a>
+            </li>
+
+            <li>
+                <div class="images_ad">
+                    <img src="{% static 'otchet/images/mon (3).png' %}">
+                </div>
+                <a href="{% url 'events' %}" class="menu_a">Мероприятия</a>
+            </li>
+        </ul>
+    </div>
+    {% endif %}
+    {% block content %}  {% endblock %}
+</div>
+<script src="{% static 'otchet/js/form-script.js' %}"></script>
+<script src="{% static 'otchet/js/copy-script.js' %}"></script>
+</body>
+</html>

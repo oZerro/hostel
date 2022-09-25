@@ -1,0 +1,518 @@
+{% extends 'otchet/base.html' %}
+
+
+
+{% block title %}
+    Отчет
+{% endblock %}
+
+{% load static %}
+
+
+
+{% block content %}
+    <div class="otchet">
+        <div class="otchet_wnut">
+        <h2 id="vir-zagol" class="copy1">Выручка с 1.{{ month_now }} по 1.{{ month_next }}</h2>
+
+        <div class="block_otchet">
+            <div class="copy copir">
+                <span class="copir">
+                    Копировать
+                </span>
+                <img src="{% static 'otchet/images/copy.png' %}" class="copir">
+            </div>
+            <h3 class="zagol copy1" id="zagol-1">
+                Комнаты:
+            </h3>
+
+            <ul>
+                <li>
+                    <h4 class="copy2">#2</h4>
+                    <div class="summ_room1">
+                        <h4 class="copy2">{{ summ_2_room }}р</h4>
+                    </div>
+
+                </li>
+
+                <li>
+                    <h4 class="copy2">#3</h4>
+                    <div class="summ_room1">
+                        <h4 class="copy2">{{ summ_3_room }}р</h4>
+                    </div>
+                </li>
+
+                <li>
+                    <h4 class="copy2">#4</h4>
+                    <div class="summ_room1">
+                        <h4 class="copy2">{{ summ_4_room }}р</h4>
+                    </div>
+                </li>
+
+                <li>
+                    <h4 class="copy2">#5</h4>
+                    <div class="summ_room1">
+                        <h4 class="copy2">{{ summ_5_room }}р</h4>
+                    </div>
+                </li>
+
+                <li>
+                    <h4 class="copy2">#6</h4>
+                    <div class="summ_room1">
+                        <h4 class="copy2">{{ summ_6_room }}р</h4>
+                    </div>
+                </li>
+
+                <li>
+                    <h4 class="copy2">#7</h4>
+                    <h4 class="copy2">столовая</h4>
+                </li>
+
+                <li>
+                    <h4 class="copy2">#8</h4>
+                    <h4 class="copy2">котельная</h4>
+                </li>
+
+                <li>
+                    <h4 class="copy2">#9</h4>
+                    <h4 class="copy2">кухня</h4>
+
+                <li>
+                    <h4 class="copy2">#10</h4>
+                    <div class="summ_room1">
+                        <h4 class="copy2">{{ summ_10_room }}р</h4>
+                    </div>
+                </li>
+
+                <li>
+                    <h4 class="copy2">#11</h4>
+                    <div class="summ_room1">
+                        <h4 class="copy2">{{ summ_11_room }}р</h4>
+                    </div>
+                </li>
+
+                <li>
+                    <h4 class="copy2">#12</h4>
+                    <div class="summ_room1">
+                        <h4 class="copy2">{{ summ_12_room }}р</h4>
+                    </div>
+                </li>
+
+                <li>
+                    <h4 class="copy2">#13</h4>
+                    <div class="summ_room1">
+                        <h4 class="copy2">{{ summ_13_room }}р</h4>
+                    </div>
+                </li>
+
+                <li>
+                    <h4 class="copy2">#14</h4>
+                    <div class="summ_room1">
+                        <h4 class="copy2">{{ summ_14_room }}р</h4>
+                    </div>
+                </li>
+
+                <li>
+                    <h4 class="copy2">#15</h4>
+                    <div class="summ_room1">
+                        <h4 class="copy2">{{ summ_15_room }}р</h4>
+                    </div>
+                </li>
+                <li>
+                    <h4 class="copy2">#16</h4>
+                    <div class="summ_room1">
+                        <h4 class="copy2">{{ summ_16_room }}р</h4>
+                    </div>
+                </li>
+
+                <li>
+                    <h4 class="copy2">#17</h4>
+                    <div class="summ_room1">
+                        <h4 class="copy2">{{ summ_17_room }}р</h4>
+                    </div>
+                </li>
+            </ul>
+
+            <h3 class="itog">
+                <span class="left copy2">Итого:</span>
+                <span id="suum_vsego" class="copy2">{{ suum_vsego }}р</span>
+            </h3>
+        </div>
+
+            <div class="block_otchet">
+                <h3 class="zagol" id="sagol-2">
+                    Затраты Босс:
+                </h3>
+
+                <ul class="media_ul_otchet">
+                    {% for spend in spending_boss %}
+                    <li>
+                        <h4 class="copy3">{{ spend.date }}</h4>
+                        <h4 class="copy3">{{ spend.note }}</h4>
+                        <h4 class="copy3">{{ spend.summa }}р</h4>
+                    </li>
+                    {% endfor %}
+                </ul>
+
+                <h3 class="itog">
+                    <span class="left copy4">Итого:</span>
+                    <span class="copy4">{{ spend_vsego_boss }}р</span>
+                </h3>
+
+            </div>
+
+            <div class="block_otchet">
+                <h3 class="zagol" id="sagol-3">
+                    Затраты Дом
+                </h3>
+
+                <ul class="media_ul_otchet">
+                    {% for spend in spending_dom %}
+                    <li>
+                        <h4>{{ spend.date }}</h4>
+                        <h4 class="copy6">{{ spend.note }}</h4>
+                        <h4 class="copy6">{{ spend.summa }}р</h4>
+                    </li>
+                    {% endfor %}
+                </ul>
+
+                <h3 class="itog">
+                    <span class="left copy7">Итого:</span>
+                    <span class="copy7">{{ spend_vsego_dom }}р</span>
+                </h3>
+
+            </div>
+
+
+            <div class="block_otchet">
+                <h3 class="zagol" id="sagol-4">
+                    Заезды / Выезды
+                </h3>
+
+                <ul class="media_ul_otchet">
+                    <li>
+                    <h4 class="copy8">#2</h4>
+                    <div class="summ_room">
+                        {% if count_new_people.1.2 > 0 %}
+                            <h4 class="copy8">+ {{ count_new_people.1.2 }} чел</h4>
+                        {% else %}
+                            <h4 class="copy8">Заездов не было</h4>
+                        {% endif %}
+
+                        {% if count_depart_people.1.2 > 0 %}
+                            <h4 class="copy8">- {{ count_depart_people.1.2 }} чел</h4>
+                        {% else %}
+                            <h4 class="copy8" class="copy8">Выездов не было</h4>
+                        {% endif %}
+
+                    </div>
+
+                </li>
+
+                <li>
+                    <h4 class="copy8">#3</h4>
+                    <div class="summ_room">
+                        {% if count_new_people.1.3 > 0 %}
+                            <h4 class="copy8">+ {{ count_new_people.1.3 }} чел</h4>
+                        {% else %}
+                            <h4 class="copy8">Заездов не было</h4>
+                        {% endif %}
+
+                        {% if count_depart_people.1.3 > 0 %}
+                            <h4 class="copy8">- {{ count_depart_people.1.3 }} чел</h4>
+                        {% else %}
+                            <h4 class="copy8">Выездов не было</h4>
+                        {% endif %}
+                    </div>
+                </li>
+
+                <li>
+                    <h4 class="copy8">#4</h4>
+                    <div class="summ_room">
+                        {% if count_new_people.1.4 > 0 %}
+                            <h4 class="copy8">+ {{ count_new_people.1.4 }} чел</h4>
+                        {% else %}
+                            <h4 class="copy8">Заездов не было</h4>
+                        {% endif %}
+
+                        {% if count_depart_people.1.4 > 0 %}
+                            <h4 class="copy8">- {{ count_depart_people.1.4 }} чел</h4>
+                        {% else %}
+                            <h4 class="copy8">Выездов не было</h4>
+                        {% endif %}
+                    </div>
+                </li>
+
+                <li>
+                    <h4 class="copy8">#5</h4>
+                    <div class="summ_room">
+                        {% if count_new_people.1.5 > 0 %}
+                            <h4 class="copy8">+ {{ count_new_people.1.5 }} чел</h4>
+                        {% else %}
+                            <h4 class="copy8">Заездов не было</h4>
+                        {% endif %}
+
+                        {% if count_depart_people.1.5 > 0 %}
+                            <h4 class="copy8">- {{ count_depart_people.1.5 }} чел</h4>
+                        {% else %}
+                            <h4 class="copy8">Выездов не было</h4>
+                        {% endif %}
+                    </div>
+                </li>
+
+                <li>
+                    <h4 class="copy8">#6</h4>
+                    <div class="summ_room">
+                        {% if count_new_people.1.6 > 0 %}
+                            <h4 class="copy8">+ {{ count_new_people.1.6 }} чел</h4>
+                        {% else %}
+                            <h4 class="copy8">Заездов не было</h4>
+                        {% endif %}
+
+                        {% if count_depart_people.1.6 > 0 %}
+                            <h4 class="copy8">- {{ count_depart_people.1.6 }} чел</h4>
+                        {% else %}
+                            <h4 class="copy8">Выездов не было</h4>
+                        {% endif %}
+                    </div>
+                </li>
+
+                <li>
+                    <h4 class="copy9">#7</h4>
+                    <h4 class="copy9">Столовая</h4>
+                </li>
+
+                <li>
+                    <h4 class="copy9">#8</h4>
+                    <h4 class="copy9">Котельная</h4>
+                </li>
+
+                <li>
+                    <h4 class="copy9">#9</h4>
+                    <h4 class="copy9">Кухня</h4>
+                </li>
+
+                <li>
+                    <h4 class="copy8">#10</h4>
+                    <div class="summ_room">
+                        {% if count_new_people.1.10 > 0 %}
+                            <h4 class="copy8">+ {{ count_new_people.1.10 }} чел</h4>
+                        {% else %}
+                            <h4 class="copy8">Заездов не было</h4>
+                        {% endif %}
+
+                        {% if count_depart_people.1.10 > 0 %}
+                            <h4 class="copy8">- {{ count_depart_people.1.10 }} чел</h4>
+                        {% else %}
+                            <h4 class="copy8">Выездов не было</h4>
+                        {% endif %}
+                    </div>
+                </li>
+
+                <li>
+                    <h4 class="copy8">#11</h4>
+                    <div class="summ_room">
+                        {% if count_new_people.1.11 > 0 %}
+                            <h4 class="copy8">+ {{ count_new_people.1.11 }} чел</h4>
+                        {% else %}
+                            <h4 class="copy8">Заездов не было</h4>
+                        {% endif %}
+
+                        {% if count_depart_people.1.11 > 0 %}
+                            <h4 class="copy8">- {{ count_depart_people.1.11 }} чел</h4>
+                        {% else %}
+                            <h4 class="copy8">Выездов не было</h4>
+                        {% endif %}
+                    </div>
+                </li>
+
+                <li>
+                    <h4 class="copy8">#12</h4>
+                    <div class="summ_room">
+                        {% if count_new_people.1.12 > 0 %}
+                            <h4 class="copy8">+ {{ count_new_people.1.12 }} чел</h4>
+                        {% else %}
+                            <h4 class="copy8">Заездов не было</h4>
+                        {% endif %}
+
+                        {% if count_depart_people.1.12 > 0 %}
+                            <h4 class="copy8">- {{ count_depart_people.1.12 }} чел</h4>
+                        {% else %}
+                            <h4 class="copy8">Выездов не было</h4>
+                        {% endif %}
+                    </div>
+                </li>
+
+                <li>
+                    <h4 class="copy8">#13</h4>
+                    <div class="summ_room">
+                        {% if count_new_people.1.13 > 0 %}
+                            <h4 class="copy8">+ {{ count_new_people.1.13 }} чел</h4>
+                        {% else %}
+                            <h4 class="copy8">Заездов не было</h4>
+                        {% endif %}
+
+                        {% if count_depart_people.1.13 > 0 %}
+                            <h4 class="copy8">- {{ count_depart_people.1.13 }} чел</h4>
+                        {% else %}
+                            <h4 class="copy8">Выездов не было</h4>
+                        {% endif %}
+                    </div>
+                </li>
+
+                <li>
+                    <h4 class="copy8">#14</h4>
+                    <div class="summ_room">
+                        {% if count_new_people.1.14 > 0 %}
+                            <h4 class="copy8">+ {{ count_new_people.1.14 }} чел</h4>
+                        {% else %}
+                            <h4 class="copy8">Заездов не было</h4>
+                        {% endif %}
+
+                        {% if count_depart_people.1.14 > 0 %}
+                            <h4 class="copy8">- {{ count_depart_people.1.14 }} чел</h4>
+                        {% else %}
+                            <h4 class="copy8">Выездов не было</h4>
+                        {% endif %}
+                    </div>
+                </li>
+
+                <li>
+                    <h4 class="copy8">#15</h4>
+                    <div class="summ_room">
+                        {% if count_new_people.1.15 > 0 %}
+                            <h4 class="copy8">+ {{ count_new_people.1.15 }} чел</h4>
+                        {% else %}
+                            <h4 class="copy8">Заездов не было</h4>
+                        {% endif %}
+
+                        {% if count_depart_people.1.15 > 0 %}
+                            <h4 class="copy8">- {{ count_depart_people.1.15 }} чел</h4>
+                        {% else %}
+                            <h4 class="copy8">Выездов не было</h4>
+                        {% endif %}
+                    </div>
+                </li>
+                <li>
+                    <h4 class="copy8">#16</h4>
+                    <div class="summ_room">
+                        {% if count_new_people.1.16 > 0 %}
+                            <h4 class="copy8">+ {{ count_new_people.1.16 }} чел</h4>
+                        {% else %}
+                            <h4 class="copy8">Заездов не было</h4>
+                        {% endif %}
+
+                        {% if count_depart_people.1.16 > 0 %}
+                            <h4 class="copy8">- {{ count_depart_people.1.16 }} чел</h4>
+                        {% else %}
+                            <h4 class="copy8">Выездов не было</h4>
+                        {% endif %}
+                    </div>
+                </li>
+
+                <li>
+                    <h4 class="copy8">#17</h4>
+                    <div class="summ_room">
+                        {% if count_new_people.1.17 > 0 %}
+                            <h4 class="copy8">+ {{ count_new_people.1.17 }} чел</h4>
+                        {% else %}
+                            <h4 class="copy8">Заездов не было</h4>
+                        {% endif %}
+
+                        {% if count_depart_people.1.17 > 0 %}
+                            <h4 class="copy8">- {{ count_depart_people.1.17 }} чел</h4>
+                        {% else %}
+                            <h4 class="copy8">Выездов не было</h4>
+                        {% endif %}
+                    </div>
+                </li>
+                </ul>
+
+                <h3 class="itog">
+                    <span class="left copy10" >Итого:</span>
+                    <span class="copy10">{{ count_new_people.0 }} чел заехало /</span>
+                    <span class="copy10">{{ count_depart_people.0 }} чел съехало</span>
+                </h3>
+
+            </div>
+
+
+            <div class="block_otchet">
+                <h3 class="zagol" id="sagol-5">
+                    Мероприятия проведены
+                </h3>
+
+                <ul class="media_ul_otchet">
+                    {% for event in events %}
+                    <li>
+                        <h4 class="copy11">{{ event.date }}</h4>
+                        <h4 class="copy11">{{ event.event }}</h4>
+                    </li>
+                    {% endfor %}
+                </ul>
+
+            </div>
+
+
+            <div class="block_otchet">
+                <h3 class="zagol" id="sagol-6">
+                    Задачи на следующий месяц
+                </h3>
+
+                <ul>
+
+                </ul>
+
+            </div>
+
+
+            <div class="block_otchet">
+                <h3 class="zagol" id="sagol-7">
+                    ИТОГО
+                </h3>
+
+                <ul id="itog_glav">
+                    <li>
+                        <h4 id="revenue">
+                            <span class="copy12">{{ suum_vsego }}р</span>
+                            <span class="right copy12">(выручка)</span>
+                        </h4>
+                    </li>
+
+                    <li>
+                        <h4>
+                            <span class="copy12">- {{ spend_vsego_boss }}р</span>
+                            <span class="right copy12">(затраты босс)</span>
+                        </h4>
+                    </li>
+
+                    <li>
+                        <h4>
+                            <span class="copy12">- {{ spend_vsego_dom }}р</span>
+                            <span class="right copy12">(затраты дом)</span>
+                        </h4>
+                    </li>
+
+                    <li>
+                        <h4>
+                            <span class="copy12">- {{ spend_admin }}р</span>
+                            <span class="right copy12">(аванс Админ)</span>
+                        </h4>
+                    </li>
+
+                    <li>
+                        <h4 id="balance">
+                            <span class="copy12">{{ banca }}р</span>
+                            <span class="right copy12">(остаток)</span>
+                        </h4>
+                    </li>
+
+                </ul>
+
+            </div>
+
+    </div>
+    </div>
+
+
+{% endblock %}

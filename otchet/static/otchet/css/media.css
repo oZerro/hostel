@@ -1,0 +1,265 @@
+@media screen and (max-width: 1511px) {
+  .append {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .append_but{
+    width:19%;
+  }
+
+  .append_but2{
+    width:19%;
+  }
+
+  .but{
+     width:19% !important;
+  }
+
+}
+
+
+@media screen and (max-width: 1415px) {
+.burger_menu {
+    display: block !important;
+}
+
+.menu{
+    display:none;
+}
+
+.content{
+    margin-right: 0 !important;
+}
+
+.wrapper-content {
+    margin:auto;
+}
+
+}
+
+@media screen and (max-width: 1202px) {
+.append_but{
+    width:22%;
+  }
+
+  .append_but2{
+    width:22%;
+  }
+
+  .but{
+     width:22% !important;
+  }
+
+  .menu-media {
+      width: 28% !important;
+   }
+
+  .block_otchet {
+        width: 90% !important;
+   }
+
+   .payments2 {
+    width: 90% !important;
+    }
+}
+
+@media screen and (max-width: 1026px) {
+    .wrapper-content{
+        width: 93% !important;
+    }
+
+    .payments{
+        overflow: scroll;
+    }
+
+    .stolb_payments{
+        width:900px;
+    }
+
+    .pay {
+        width: 900px;
+    }
+
+    .menu-media {
+      width: 32% !important;
+   }
+
+   .but5{
+    position: relative;
+    width: 45% !important;
+    }
+
+}
+
+@media screen and (max-width: 884px) {
+    .append_but{
+    width:27%;
+  }
+
+  .append_but2{
+    width:27%;
+  }
+
+  .but{
+     width:27% !important;
+  }
+
+   .menu-media {
+      width: 38% !important;
+   }
+
+   .otchet {
+        width: 90% !important;
+    }
+
+    .copy span {
+        display: none;
+    }
+
+    .but5{
+    position: relative;
+    width: 60% !important;
+    }
+}
+
+@media screen and (max-width: 722px) {
+    .append_but{
+    width:32%;
+  }
+
+  .append_but2{
+    width:32%;
+  }
+
+  .but{
+     width:32% !important;
+  }
+
+  .menu-media {
+      width: 43% !important;
+   }
+
+   .but5{
+    position: relative;
+    width: 65% !important;
+    }
+}
+
+@media screen and (max-width: 664px) {
+    ._left{
+        display: none !important;
+    }
+
+    .head_head{
+        margin-left: 20px;
+    }
+
+    .menu-media {
+      width: 50% !important;
+   }
+
+   .media_ul_otchet{
+    overflow:scroll;
+   }
+
+   .media_ul_otchet li{
+    width:520px;
+   }
+}
+
+@media screen and (max-width: 610px) {
+  .append_but{
+    width:41%;
+  }
+
+  .append_but2{
+    width:41%;
+  }
+
+  .but{
+     width:41% !important;
+  }
+
+   .menu-media {
+      width: 59% !important;
+   }
+
+   .pagin {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column-reverse;
+}
+
+.but5{
+    position: relative;
+    width:100% !important;
+    }
+}
+
+@media screen and (max-width: 470px) {
+.payments2 h1 {
+    background: #1a6a99;
+    color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    font-size: 25px !important;
+}
+
+.ul_pay_ref2 {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    flex-direction: column;
+}
+
+.but5 {
+    flex-direction: column;
+    }
+
+.itog {
+    text-align: right;
+    font-size: 25px;
+    font-weight: 500;
+    color: #fff;
+    background: #1a6a99f7;
+    padding: 15px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+  .append_but{
+    width:59%;
+  }
+
+  .append_but2{
+    width:59%;
+  }
+
+  .but{
+     width:59% !important;
+  }
+
+  .ul_pay_ref {
+    width: 100% !important;
+    height: 0;
+    overflow: hidden !important;
+    position:relative !important;
+    top: 10px !important;
+    left: 0 !important;
+    transition: 0.2s !important;
+}
+
+.wrapper-content {
+    width: 80%;
+    margin-top: 115px;
+    padding-bottom: 50px;
+}
+
+.menu-media {
+      width: 100% !important;
+   }
+
+}

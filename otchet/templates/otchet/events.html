@@ -1,0 +1,102 @@
+{% extends 'otchet/base.html' %}
+
+
+
+{% block title %}
+    Мероприятия
+{% endblock %}
+
+{% load static %}
+
+
+
+{% block content %}
+    <div class="payments2">
+        <h1>Мероприятия</h1>
+
+        <div class="pagin">
+            <div class="but5">
+                <div class="append_but" class="append_event" onclick="add_event()">+ Мероприятие</div>
+            </div>
+
+            <nav class="num_page">
+                <ul>
+                    {% for p in page_obj.paginator.page_range%}
+                        <li>
+                            <a href="?page={{ p }}">{{ p }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </nav>
+
+        </div>
+
+        <div class="payments">
+
+                <ul class="stolb_payments">
+                    <li>
+                        <h5>Дата</h5>
+                    </li>
+                    <li>
+                        <h5>Мероприятие</h5>
+                    </li>
+
+                </ul>
+                {% for event in page_obj %}
+                    <div class="pay">
+                        <div class="date_1 text_1">
+                            {{ event.date }}
+                        </div>
+
+                        <div class="user_1 text_1">
+                            {{ event.event }}
+
+                            <a href="{% url 'update_events' event.id %}" style="right: -50px;">
+                                <img src="{% static 'otchet/images/pen.png' %}" alt="">
+                            </a>
+                            <a href="{% url 'delete_events' event.id %}" class="delete_knop" style="right: -100px !important;">
+                                <img src="{% static 'otchet/images/close.png' %}" alt="">
+                            </a>
+                        </div>
+
+                    </div>
+                {% endfor %}
+            </div>
+        <div class="pagin">
+            <div class="but5">
+                <div class="append_but" class="append_event" onclick="add_event()">+ Мероприятие</div>
+            </div>
+
+            <nav class="num_page">
+                <ul>
+                    {% for p in page_obj.paginator.page_range%}
+                        <li>
+                            <a href="?page={{ p }}">{{ p }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </nav>
+
+        </div>
+
+
+        <div class="add_pep_form" id="add_event_form">
+                <div class="head_form">
+                    <div class="close" id="close_event_form" onclick="close_add_event()">
+                        <img src="{% static 'otchet/images/close.png' %}" alt="">
+                    </div>
+                    <h1>Заполните поля ниже</h1>
+                </div>
+
+                <form method="post" class="form_one">
+                    {% csrf_token %}
+                    {{ form5.as_p }}
+                    <input type="text" value="AddEventsForms" name="name_form" hidden="hidden">
+                    <button type="submit">+ Мероприятие</button>
+                </form>
+
+            </div>
+
+
+    </div>
+{% endblock %}

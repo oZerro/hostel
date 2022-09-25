@@ -1,0 +1,36 @@
+{% extends 'otchet/base.html' %}
+
+
+
+{% block title %}
+    Редактирование траты дома
+{% endblock %}
+
+{% load static %}
+
+
+
+{% block content %}
+
+        <div class="add_pep_form add_pep_form_update" id="add_spend_hostel_form">
+                <div class="head_form">
+                    <a href="{% url 'spendinghostel' %}" class="close" id="close_spend_hostel_form" onclick="close_add_spend_hostel()">
+                        <img src="{% static 'otchet/images/close.png' %}" alt="">
+                    </a>
+                    <h1>Заполните поля ниже</h1>
+                </div>
+
+                <form method="post" class="form_one">
+                    {% csrf_token %}
+                    {{ form3.as_p }}
+                    <input type="text" value="AddSpendingHostelForms" name="name_form" hidden="hidden">
+                    <button type="submit">Редактировать трату</button>
+                </form>
+
+            </div>
+
+
+
+
+
+{% endblock %}
